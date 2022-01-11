@@ -1,19 +1,19 @@
 function add(a,b){
     let result = a + b
-    displayThirdLine.textContent = result
+    display.textContent = result
 }
 
 function subtract(a,b){
     let result = a - b
-    displayThirdLine.textContent = result
+    display.textContent = result
 }
 function multiply(a,b){
     let result = a * b
-    displayThirdLine.textContent = result}
+    display.textContent = result}
 
 function divide(a,b){
     let result = a / b
-    displayThirdLine.textContent = result}
+    display.textContent = result}
 
 function operate(operator,a, b){
     a = Number(a)
@@ -31,10 +31,28 @@ function operate(operator,a, b){
             return null
     }
 }
+
+function removeColorGrey(){
+    buttonPlus.classList.remove('greyColor')
+    buttonMinus.classList.remove('greyColor')
+    buttonMulti.classList.remove('greyColor')
+    buttonDiv.classList.remove('greyColor')
+}
+function displayContent(value){
+    display.textContent = display.textContent + value
+    displayText = display.textContent
+}
+function operation(button,value){
+    button.classList.add('greyColor')
+    operator = value
+    a = displayText
+    display.textContent = null
+}
+
 const display = document.getElementById('textDisplay')
 const displaySecondLine = document.getElementById('textDisplaySecondLine')
 const displayThirdLine = document.getElementById('textDisplayThirdLine')
-let displayContent = ""
+let displayText = null
 
 const button1 = document.getElementById('button1')
 const button2 = document.getElementById('button2')
@@ -52,75 +70,64 @@ const buttonPlus = document.getElementById('buttonPlus')
 const buttonMinus = document.getElementById('buttonMinus')
 const buttonDiv = document.getElementById('buttonDiv')
 const buttonMulti = document.getElementById('buttonMulti')
+const button = document.getElementsByTagName('button')
 
-let operator = ""
-let a = ''
+let operator = null
+let a = 0
 let b = ''
 buttonPlus.addEventListener('click',function(event){
-    operator = "+"
-    a = displayContent
-    display.textContent = null
+   buttonPlus.classList.add('greyColor')
+   if(operator != null){
+       operate(operator,a,displayText)
+       a = display.textContent
+   }
+    else{operation(buttonPlus, "+")}
 })
 buttonMinus.addEventListener('click', function(event){
-    operator = "-"
-    a = displayContent
-    display.textContent = null
+    operation(buttonMinus, "-")
 })
 buttonMulti.addEventListener('click', function(event){
-    operator = "x"
-    a = displayContent
-    display.textContent =  null
+    operation(buttonMulti, "x")
 })
 buttonDiv.addEventListener('click',function(event){
-    operator = "÷"
-    a = displayContent
-    display.textContent = null
+    operation(buttonDiv, "÷")
 }) 
 
 buttonEqual.addEventListener('click',function(event){
-    display.textContent = "="
-    operate(operator,a,displayContent)
+    operate(operator,a,displayText)
+    displayText = display.textContent
+    removeColorGrey()
 })
 
 button1.addEventListener('click', function(event){
-    display.textContent = display.textContent + 1
-    displayContent = display.textContent 
+    displayContent(1)
 })
 button2.addEventListener('click', function(event){
-    display.textContent = display.textContent + 2
-    displayContent = display.textContent 
+    displayContent(2) 
 })
 button3.addEventListener('click', function(event){
-    display.textContent = display.textContent + 3
-    displayContent = display.textContent 
+    displayContent(3) 
 })
 button4.addEventListener('click', function(event){
-    display.textContent = display.textContent + 4
-    displayContent = display.textContent 
+    displayContent(4) 
 })
 button5.addEventListener('click', function(event){
-    display.textContent = display.textContent + 5
-    displayContent = display.textContent 
+    displayContent(5) 
 })
 button6.addEventListener('click', function(event){
-    display.textContent = display.textContent + 6
-    displayContent = display.textContent 
+    displayContent(6) 
 })
 button7.addEventListener('click', function(event){
-    display.textContent = display.textContent + 7
-    displayContent = display.textContent 
+    displayContent(7) 
 })
 button8.addEventListener('click', function(event){
-    display.textContent = display.textContent + 8
-    displayContent = display.textContent 
+    displayContent(8) 
 })
 button9.addEventListener('click', function(event){
-    display.textContent = display.textContent + 9
-    displayContent = display.textContent 
+    displayContent(9) 
 })
 button0.addEventListener('click', function(event){
-    display.textContent = display.textContent + 0
-    displayContent = display.textContent 
+    displayContent(0)
 })
 
 
@@ -128,6 +135,10 @@ const clearButton = document.getElementById('clearButton')
 clearButton.addEventListener('click',function(event){
     display.textContent = null
     displayThirdLine.textContent = null
+    operator = null
+    a = 0
+    displayText = 0
+    removeColorGrey()
 })
 
 
