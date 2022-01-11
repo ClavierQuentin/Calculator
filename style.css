@@ -18,6 +18,7 @@ main{
     flex-direction: column;
     align-items: flex-end;
     justify-content: space-between;
+    font-size: 2em;
 }
 #digits{
     margin: auto;

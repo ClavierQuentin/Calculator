@@ -39,6 +39,9 @@ function removeColorGrey(){
     buttonDiv.classList.remove('greyColor')
 }
 function displayContent(value){
+    if(result != null){
+        clear()
+    }
     display.textContent = display.textContent + value
     displayText = display.textContent
 }
@@ -48,10 +51,15 @@ function operation(button,value){
     a = displayText
     display.textContent = null
 }
-
+function clear(){
+    display.textContent = null
+    operator = null
+    a = 0
+    displayText = 0
+    result = null
+    removeColorGrey()
+}
 const display = document.getElementById('textDisplay')
-const displaySecondLine = document.getElementById('textDisplaySecondLine')
-const displayThirdLine = document.getElementById('textDisplayThirdLine')
 let displayText = null
 
 const button1 = document.getElementById('button1')
@@ -75,11 +83,12 @@ const button = document.getElementsByTagName('button')
 let operator = null
 let a = 0
 let b = ''
+let result = null
 buttonPlus.addEventListener('click',function(event){
    buttonPlus.classList.add('greyColor')
    if(operator != null){
-       operate(operator,a,displayText)
-       a = display.textContent
+        operate(operator,a,displayText)
+        a = display.textContent       
    }
     else{operation(buttonPlus, "+")}
 })
@@ -95,7 +104,7 @@ buttonDiv.addEventListener('click',function(event){
 
 buttonEqual.addEventListener('click',function(event){
     operate(operator,a,displayText)
-    displayText = display.textContent
+    result = display.textContent
     removeColorGrey()
 })
 
@@ -133,12 +142,7 @@ button0.addEventListener('click', function(event){
 
 const clearButton = document.getElementById('clearButton')
 clearButton.addEventListener('click',function(event){
-    display.textContent = null
-    displayThirdLine.textContent = null
-    operator = null
-    a = 0
-    displayText = 0
-    removeColorGrey()
+    clear()
 })
 
 
