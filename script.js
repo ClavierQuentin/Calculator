@@ -59,6 +59,12 @@ function clear(){
     result = null
     removeColorGrey()
 }
+function clearClearButton(){
+    clearButton.classList.remove('greyColor')
+}
+function clearEqualButton(){
+    buttonEqual.classList.remove('greyColor')
+}
 const display = document.getElementById('textDisplay')
 let displayText = null
 
@@ -103,6 +109,8 @@ buttonDiv.addEventListener('click',function(event){
 }) 
 
 buttonEqual.addEventListener('click',function(event){
+    buttonEqual.classList.add('greyColor')
+    setTimeout(clearEqualButton, 100)
     operate(operator,a,displayText)
     result = display.textContent
     removeColorGrey()
@@ -143,7 +151,10 @@ button0.addEventListener('click', function(event){
 const clearButton = document.getElementById('clearButton')
 clearButton.addEventListener('click',function(event){
     clear()
+    clearButton.classList.add('greyColor')
+    setTimeout(clearClearButton, 100)
 })
+
 
 
 
